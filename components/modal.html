@@ -1,0 +1,24 @@
+<!-- Modal CRUD Universal -->
+<div class="modal fade" id="crudModal" tabindex="-1" aria-labelledby="crudModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content glass-card border-0">
+      <div class="modal-header border-bottom border-light">
+        <h5 class="modal-title fw-bold text-primary" id="crudModalLabel">Form Data</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <!-- Form akan dirender dinamis di dalam body ini -->
+      <form id="crudForm">
+        <div class="modal-body" id="crudModalBody">
+          <!-- Input fields masuk ke sini -->
+        </div>
+        <div class="modal-footer border-top border-light">
+          <button type="button" class="btn btn-light" data-bs-dismiss="modal">Batal</button>
+          <button type="submit" class="btn btn-primary-custom" id="btnSave">
+            <span id="saveText">Simpan Data</span>
+            <div class="spinner-border spinner-border-sm text-light d-none" id="saveSpinner" role="status"></div>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
