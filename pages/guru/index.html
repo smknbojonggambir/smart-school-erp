@@ -1,0 +1,70 @@
+<div class="container-fluid p-4" data-aos="fade-up">
+  
+  <!-- Header Title & Actions -->
+  <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 gap-3">
+    <div>
+      <h3 class="fw-bold m-0">Data Guru</h3>
+      <p class="text-muted small m-0">Kelola master data pendidik dan tenaga kependidikan</p>
+    </div>
+    <div class="d-flex gap-2">
+      <button class="btn btn-success text-white shadow-sm" onclick="exportExcel()">
+        <i class="bi bi-file-earmark-excel"></i> Export
+      </button>
+      <button class="btn btn-primary-custom shadow-sm" onclick="openModal('add')">
+        <i class="bi bi-plus-lg"></i> Tambah Guru
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Card -->
+  <div class="card glass-card p-0 overflow-hidden">
+    <!-- Toolbar (Search & Filter) -->
+    <div class="p-3 border-bottom border-light bg-light bg-opacity-50 d-flex justify-content-between align-items-center">
+      <div class="input-group" style="max-width: 300px;">
+        <span class="input-group-text bg-transparent border-end-0"><i class="bi bi-search text-muted"></i></span>
+        <input type="text" class="form-control border-start-0 ps-0" id="searchInput" placeholder="Cari NIP / Nama..." onkeyup="filterTable()">
+      </div>
+      <div>
+        <select class="form-select border-0 bg-transparent text-muted text-end" id="limitSelect" onchange="changeLimit()">
+          <option value="10">10 Baris</option>
+          <option value="25">25 Baris</option>
+          <option value="50">50 Baris</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Table Responsive -->
+    <div class="table-responsive">
+      <table class="table table-hover align-middle mb-0" id="dataTable">
+        <thead class="table-light">
+          <tr>
+            <th class="ps-4">NIP / NUPTK</th>
+            <th>Nama Lengkap</th>
+            <th>L/P</th>
+            <th>Kontak</th>
+            <th class="text-center pe-4">Aksi</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody">
+          <!-- Data akan di-inject oleh JS -->
+          <tr>
+            <td colspan="5" class="text-center py-5">
+              <div class="spinner-border text-primary" role="status"></div>
+              <p class="text-muted mt-2 small">Memuat data dari server...</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Pagination -->
+    <div class="p-3 border-top border-light bg-light bg-opacity-50 d-flex justify-content-between align-items-center">
+      <small class="text-muted" id="paginationInfo">Menampilkan 0 dari 0 data</small>
+      <nav>
+        <ul class="pagination pagination-sm m-0" id="paginationContainer">
+          <!-- Pagination dirender JS -->
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
