@@ -1,28 +1,77 @@
-// GANTI DENGAN URL WEB APP DEPLOYMENT ANDA
-const API_URL = 'https://script.google.com/macros/s/AKfycbzxCXDm8xZfUn9LhsndU_2q1eg2GJ8khurCHZOclN2JI9djIv_RM18M0JL1xY21leqjag/exec'; 
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - SMART SCHOOL ERP 360</title>
+  
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <!-- SweetAlert2 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.min.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="d-flex align-items-center justify-content-center">
 
-const API = {
-  // Fungsi utama untuk memanggil GAS REST API
-  request: async function(action, payload = {}) {
-    try {
-      const response = await fetch(API_URL, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'text/plain;charset=utf-8', // Plain text menghindari preflight CORS issue di GAS
-        },
-        body: JSON.stringify({ action: action, ...payload })
-      });
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-8 col-lg-5">
+        <div class="card glass-card p-4 p-md-5">
+          <div class="text-center mb-4">
+            <h2 class="fw-bold" style="color: var(--primary);">SMART SCHOOL <br>ERP 360</h2>
+            <p class="text-muted small">Sistem Informasi Manajemen Sekolah Terintegrasi</p>
+          </div>
 
-      const result = await response.json();
-      
-      if (result.status !== 'success') {
-        throw new Error(result.message || 'Terjadi kesalahan pada server');
-      }
-      
-      return result.data;
-    } catch (error) {
-      console.error("API Error:", error);
-      throw error;
-    }
-  }
-};
+          <form id="loginForm">
+            <div class="mb-3">
+              <label class="form-label text-muted small fw-semibold">Role / Hak Akses</label>
+              <select class="form-select" id="role" required>
+                <option value="" selected disabled>Pilih Role...</option>
+                <option value="Siswa">Siswa</option>
+                <option value="Guru">Guru</option>
+                <option value="Tata Usaha">Tata Usaha</option>
+                <option value="Operator">Operator</option>
+                <option value="Kepala Sekolah">Kepala Sekolah</option>
+                <option value="Pengawas">Pengawas</option>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label text-muted small fw-semibold">Username</label>
+              <div class="input-group">
+                <span class="input-group-text bg-transparent border-end-0 text-muted"><i class="bi bi-person"></i></span>
+                <input type="text" class="form-control border-start-0 ps-0" id="username" placeholder="Masukkan Username" required>
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <label class="form-label text-muted small fw-semibold">Password</label>
+              <div class="input-group">
+                <span class="input-group-text bg-transparent border-end-0 text-muted"><i class="bi bi-lock"></i></span>
+                <input type="password" class="form-control border-start-0 border-end-0 ps-0" id="password" placeholder="Masukkan Password" required>
+                <span class="input-group-text bg-transparent cursor-pointer border-start-0" id="togglePassword" style="cursor: pointer;">
+                  <i class="bi bi-eye text-muted"></i>
+                </span>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary-custom w-100 py-2" id="btnLogin">
+              <span id="loginText">Masuk Sekarang</span>
+              <div class="spinner-border spinner-border-sm text-light d-none" id="loginSpinner" role="status"></div>
+            </button>
+          </form>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.all.min.js"></script>
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/auth.js"></script>
+</body>
+</html>
